@@ -1,0 +1,11 @@
+datasets
+matplotlib
+numpy
+pandas
+python-dotenv
+sentencepiece
+safetensors
+tiktoken
+torch
+transformers
+peft

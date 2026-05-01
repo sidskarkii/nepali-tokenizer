@@ -1,2 +1,79 @@
+# Secrets and local environment
 .env
-tokenizers/
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
+
+# Assistant/local state
+.claude/
+CLAUDE.md
+**/CLAUDE.md
+
+# Internal docs (not for public repo)
+AUDIT.md
+STATUS.md
+TRAINING_PLAN.md
+CPT_LOG.md
+
+# Large or source-derived data. Keep recipes/scripts public, not local corpora.
+data/raw/
+data/books/
+data/corpus/
+data/clean/*.jsonl
+data/**/*.xz
+data/**/*.txt
+
+# Model checkpoints and adapters. Publish these through Hugging Face, not git.
+output/
+checkpoints/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Runtime logs and remote machine helper scripts.
+*.log
+CPT_SFT.log
+setup_instance.sh
+launch_cpt.sh
+
+# Eval set (not wired up yet)
+eval/
+
+# Internal verification scripts
+scripts/
+
+# Notebook-generated results
+results/notebook/
+
+# Timestamped result duplicates (keep latest_ only)
+results/tokenizer_training/sentencepiece_sweep_*.json
+results/tokenizer_training/sentencepiece_sweep_*.csv
+results/tokenizer_training/latest_sentencepiece_sweep.csv
+
+# Downloaded base tokenizer caches are large/noisy. Selected public artifacts
+# can be force-added explicitly after review.
+tokenizers/*/
+!tokenizers/phi4/
+!tokenizers/qwen3/
+!tokenizers/sentencepiece_nepali_bpe/
+!tokenizers/extended/
+tokenizers/sentencepiece_nepali_bpe/*
+!tokenizers/sentencepiece_nepali_bpe/nepali_bpe_32k.model
+!tokenizers/sentencepiece_nepali_bpe/nepali_bpe_32k.vocab
+!tokenizers/sentencepiece_nepali_bpe/nepali_bpe_32k.train_config.json
+tokenizers/extended/*
+!tokenizers/extended/qwen3-nepali/

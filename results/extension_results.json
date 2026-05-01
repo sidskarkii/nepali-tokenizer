@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Phi-4",
+    "base_vocab": 100352,
+    "new_vocab": 115609,
+    "tokens_added": 15257,
+    "before_tpw": 7.0985,
+    "after_tpw": 3.4149,
+    "improvement_pct": 51.9,
+    "output_path": "/Users/calld-admin/portfolio/nepali-tokenizer/tokenizers/extended/phi4-nepali"
+  },
+  {
+    "name": "Qwen 3.5",
+    "base_vocab": 248077,
+    "new_vocab": 263271,
+    "tokens_added": 15194,
+    "before_tpw": 4.4869,
+    "after_tpw": 2.4977,
+    "improvement_pct": 44.3,
+    "output_path": "/Users/calld-admin/portfolio/nepali-tokenizer/tokenizers/extended/qwen3.5-nepali"
+  },
+  {
+    "name": "DeepSeek V4",
+    "base_vocab": 129280,
+    "new_vocab": 144567,
+    "tokens_added": 15287,
+    "before_tpw": 4.0134,
+    "after_tpw": 2.5179,
+    "improvement_pct": 37.3,
+    "output_path": "/Users/calld-admin/portfolio/nepali-tokenizer/tokenizers/extended/deepseek-v4-nepali"
+  },
+  {
+    "name": "Kimi K2.6",
+    "base_vocab": 163840,
+    "new_vocab": 163840,
+    "tokens_added": 15291,
+    "before_tpw": 3.8916,
+    "after_tpw": 2.511,
+    "improvement_pct": 35.5,
+    "output_path": "/Users/calld-admin/portfolio/nepali-tokenizer/tokenizers/extended/kimi-k2.6-nepali"
+  }
+]
