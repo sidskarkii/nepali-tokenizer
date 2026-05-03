@@ -41,13 +41,13 @@ Gemma 2              2024   256,000 │        3.21        1.25 │   2.6x │  
 LLaMA 4              2025   201,135 │        2.99        1.23 │   2.4x │      2,696  1.3%
 GPT-4o               2024   200,019 │        2.68        1.22 │   2.2x │      3,985  2.0%
 Gemma 4              2026   262,144 │        2.52        1.26 │   2.0x │     13,754  5.2%
-DeepSeek V3          2025   128,815 │  DROPS TEXT        1.41 │    N/A │          0  0.0%
+DeepSeek V3*         2025   128,815 │  DROPS TEXT        1.41 │    N/A │          0  0.0%
 ```
 
 ## Family Progression
 
 ```
-DeepSeek: V3 (2025): drops text → V4 (2026): 3.3x
+DeepSeek: V3 (2025): drops text via AutoTokenizer* → V4 (2026): 3.3x
 Gemma:    2 (2024): 2.6x → 4 (2026): 2.0x
 GLM:      4 (2024): 5.3x → 5 (2026): 4.8x
 Kimi:     K2 (2025): 3.3x → K2.6 (2026): 3.3x  (same tokenizer)
@@ -61,7 +61,7 @@ Qwen:     3 (2025): 4.9x → 3.5 (2026): 3.7x
 
 **Phi-4 is worst and regressed.** 27 Devanagari tokens in 100K vocab. Microsoft expanded from 32K to 100K without adding Devanagari. The tax went up because English got more efficient while Nepali stayed the same.
 
-**DeepSeek V3 tokenizer drops non-Latin text.** Not just Nepali — Russian, Arabic, CJK, Thai, Hebrew, Tamil, Bengali all encode to zero tokens. Root cause: Metaspace pre-tokenizer + ByteLevel BPE vocab mismatch + unk_token=None. V4 fixed it.
+**DeepSeek V3 tokenizer drops non-Latin text via `AutoTokenizer`.** When loaded with `transformers` v5, `LlamaTokenizerFast` silently overwrites the ByteLevel pre-tokenizer with Metaspace, causing all non-Latin scripts to encode to zero tokens. This is a `transformers` loading regression, not a DeepSeek vocab issue — loading with `PreTrainedTokenizerFast` produces correct output. Affects V3, R1, and related models. See [transformers #45488](https://github.com/huggingface/transformers/issues/45488).
 
 **Gemma 4 is best** with 13,754 Devanagari tokens (5.2% of vocab). GPT-4o is second at 2.2x with 3,985 tokens.
 
@@ -102,3 +102,5 @@ python benchmark.py      # runs benchmark, ~5 min
 ```
 
 Full per-document metrics, vocabulary analysis, and bootstrap CIs are in the JSON output.
+
+\* DeepSeek V3 text dropping is caused by a `transformers` v5 loading regression, not a DeepSeek tokenizer defect. `LlamaTokenizerFast` silently overwrites the tokenizer's ByteLevel pre-tokenizer with Metaspace on load. Loading with `PreTrainedTokenizerFast` produces correct results. See [transformers #45488](https://github.com/huggingface/transformers/issues/45488).
