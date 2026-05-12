@@ -63,3 +63,7 @@ jupyter notebook notebooks/nepali_tokenizer_benchmark.ipynb
 **HuggingFace** — model adapters (CPT + SFT), extended tokenizers.
 
 **Not committed** — the 7.49GB training corpus (recipe is in `build_corpus.py`), downloaded base tokenizer caches, model checkpoints.
+
+## License
+
+Community Use License v1.0 — free for individuals, researchers, non-profits, and organizations under $100K annual revenue. Attribution required. Above-threshold entities must obtain a separate written license. See [LICENSE.md](LICENSE.md).
