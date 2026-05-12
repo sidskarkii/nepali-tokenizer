@@ -1,8 +1,10 @@
-# Nepali Tokenizer Infrastructure
+# Devanagari Tokenizer Benchmark: Measuring and Reducing the Nepali Token Tax Across 17 LLM Families
 
-Most LLM tokenizers need 2x–6x more tokens for Nepali than English. This repo measures that gap across 17 models, trains a Nepali-optimized tokenizer, and extends existing model tokenizers to close the gap.
+Comprehensive benchmark of tokenizer efficiency for the Nepali language (Devanagari script) across 17 large language model tokenizers from 9 model families including GPT-4o, Gemma 4, LLaMA 4, Qwen 3, DeepSeek V4, Phi-4, Mistral, Kimi K2, and GLM. Measures the "token tax" that Nepali speakers pay compared to English: from 2.0x (Gemma 4) to 5.7x (Phi-4).
 
-The end-to-end experiment extends the Qwen3-4B tokenizer with 15K Nepali tokens, then runs LoRA continued pretraining and instruction fine-tuning. The extended tokenizer cuts Nepali token count by 48% on a 2,000-doc benchmark split.
+Includes a full remediation pipeline: extended tokenizers for 4 models (up to 52% token reduction), a standalone 32K Nepali BPE tokenizer trained on 7.49GB of cleaned corpus, and an end-to-end CPT+SFT experiment on Qwen3-4B achieving 48% token count reduction with BPC improvement from 1.96 to 1.07. Also documents a **DeepSeek V3 tokenizer bug** where non-Latin text silently drops to zero tokens.
+
+**Write-up**: [siddhantskarki.com/case-studies/nepali-tokenizer](https://www.siddhantskarki.com/case-studies/nepali-tokenizer) | **Models**: [huggingface.co/sidskarki](https://huggingface.co/sidskarki)
 
 ## Results
 
